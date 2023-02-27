@@ -1,0 +1,5 @@
+<div class="position-relative">
+  <div class="card-category card-large" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @product.photos[0].attached? ? cl_image_path(@product.photos[0].key) : asset_path('photo_background.jpg') %>)">
+    <h1><%= @product.name %></h1>
+  </div>
+</div>
