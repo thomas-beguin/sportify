@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.float :price_per_day
       t.integer :year_of_purchase
       t.string :condition
-      t.references :user_id, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
