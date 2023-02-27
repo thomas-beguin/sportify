@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :products do
     resources :bookings, only: %i[new create]
   end
-  resources :bookings, only: %i[edit update delete]
+  resources :bookings, only: %i[edit show update delete]
 end

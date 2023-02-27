@@ -1,1 +1,18 @@
-<h1>New Product</h1>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Create a new product</h3>
+        <%= simple_form_for @product do |f| %>
+          <%= f.input :name %>
+          <%= f.input :category %>
+          <%= f.input :price_per_day %>
+          <%= f.input :year_of_purchase %>
+          <%= f.input :condition %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.submit class: 'btn btn-flat' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
