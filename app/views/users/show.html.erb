@@ -1,26 +1,15 @@
-<div class="container mt-3">
-  <div class="row">
-    <div class="col-12">
-      <h1>All our available products</h1>
-    </div>
-  </div>
+<div class="container">
+  <h1>Hello <%= @user.first_name %></h1>
 
-<%# <h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p> %>
-
-  <div id="recherche">
-    <h3>Barre de recherche<h3>
-  </div>
-
-<div class="banner">
-  <div class="container">
-    <h1>Sportify</h1>
-  </div>
-</div>
+  <h2>My current rent</h2>
 
 
-<div class="row mb-3 ">
-    <% @products.each do |product| %>
+  <h2>Previous rent</h2>
+
+  <h2>My products</h2>
+
+  <div class="row mb-3 ">
+    <% @user.products.each do |product| %>
       <div class="col-4 mb-3">
         <div class="card h-100">
           <% if product.photos.attached? %>
@@ -47,6 +36,7 @@
           <div class="card-body">
             <strong><%= product.name %></strong>
             <p class="text-muted" ><%= product.price_per_day %>€/day</p>
+
             <span>
               <%= link_to "Edit", edit_product_path(product) %>
             </span>
@@ -62,3 +52,4 @@
     <% end %>
   </div>
 
+</div>

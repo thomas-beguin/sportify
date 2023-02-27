@@ -53,6 +53,7 @@ gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
 
 gem "devise"
+gem "cloudinary"
 
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
