@@ -6,14 +6,103 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts 'Creating 20 prodcuts'
-20.times do
-  product = Product.create(
-    name: "Paddle",
-    photo: "https://www.bing.com/images/search?view=detailV2&ccid=vR%2FMyJhG&id=4BDDD1F5EA9D17A8124118C062C7B285CB929BA9&thid=OIP.vR_MyJhGi9CtvpEcyfbAygHaE8&mediaurl=https%3A%2F%2Fimg.static-rmg.be%2Fa%2Fview%2Fq75%2Fw%2Fh%2F2321875%2Fmarco-lopez-z2jzpd0e9lo-unsplash-jpg.jpg&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.bd1fccc898468bd0adbe911cc9f6c0ca%3Frik%3DqZuSy4Wyx2LAGA%26pid%3DImgRaw%26r%3D0&exph=3648&expw=5472&q=paddle&simid=607990889538597322&form=IRPRST&ck=EC47F89D3E6D348DA426D3FAFBD72060&selectedindex=16&ajaxhist=0&ajaxserp=0&vt=0&sim=11",
-    description: "Brand new paddle",
-    rating:  rand(0..5)
+require "open-uri"
+
+user = User.new(email: "m@gmail.com", password: "123456")
+user.save
+
+  product = Product.new(
+    name: "Ski",
+    category: "Winter Sport",
+    price_per_day: "20 euros",
+    year_of_purchase: "2021",
+    condition: "Neuf"
   )
+  file = URI.open("https://s1.1zoom.me/b4340/106/Skiing_Men_Jump_Snow_513852_3840x2400.jpg")
+  product.photos.attach(io: file, filename: "ski.png", content_type: "image/png")
+  product.user = User.all.sample
   product.save!
-end
-puts 'Finished!'
+
+  product = Product.new(
+    name: "Paddle",
+    category: "Water Sport",
+    price_per_day: "10 euross",
+    year_of_purchase: "2017",
+    condition: "Used"
+  )
+  file = URI.open("https://img.static-rmg.be/a/view/q75/w/h/2321875/marco-lopez-z2jzpd0e9lo-unsplash-jpg.jpg")
+  product.photos.attach(io: file, filename: "paddle.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "Tennis Equipment",
+    category: "Collective Sport",
+    price_per_day: "15 euros",
+    year_of_purchase: "2020",
+    condition: "Used"
+  )
+  file = URI.open("https://www.espace-des-marques.com/152006-thickbox_default/raquette-de-tennis-noire-junior-babolat-ballfighter-25.jpg")
+  product.photos.attach(io: file, filename: "tennis.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "Soccer ball",
+    category: "Collective Sport",
+    price_per_day: "5.5 euros",
+    year_of_purchase: "2019",
+    condition: "Great quality"
+  )
+  file = URI.open("https://balenciaga.dam.kering.com/m/6e0b67f1dc05615e/Medium-724729T01311000_F.jpg?v=2")
+  product.photos.attach(io: file, filename: "foot.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "BMX",
+    category: "Outdoor Sport",
+    price_per_day: "45 euros",
+    year_of_purchase: "2023",
+    condition: "Terrific"
+  )
+  file = URI.open("https://www.brosstore.fr/15944-thickbox_default/bmx-18-subrosa-tiro-black-2021.jpg")
+  product.photos.attach(io: file, filename: "bmx.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "Diving material",
+    category: "Sea Sport",
+    price_per_day: "75 euros",
+    year_of_purchase: "2018",
+    condition: "Good quality"
+  )
+  file = URI.open("https://img.class.posot.es/en_gb/2020/03/22/SCUBA-DIVING-GEAR-20200322121106.jpg")
+  product.photos.attach(io: file, filename: "diving.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "Basketball",
+    category: "Collective Sport",
+    price_per_day: "2.5 euros",
+    year_of_purchase: "2020",
+    condition: "Used"
+  )
+  file = URI.open("https://m.media-amazon.com/images/I/81HtVnVEvHL._AC_SX679_.jpg")
+  product.photos.attach(io: file, filename: "basket.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!
+
+  product = Product.new(
+    name: "Tutu",
+    category: "Dance",
+    price_per_day: "16 euros",
+    year_of_purchase: "2022",
+    condition: "Good quality"
+  )
+  file = URI.open("https://m.media-amazon.com/images/I/81HtVnVEvHL._AC_SX679_.jpg")
+  product.photos.attach(io: file, filename: "basket.png", content_type: "image/png")
+  product.user = User.all.sample
+  product.save!

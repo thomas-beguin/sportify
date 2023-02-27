@@ -35,7 +35,23 @@
 }
 
 
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
 
-#recherche {
-  align-items: center;
+.banner h1 {
+  margin: 0;
+  color: rgb(123, 130, 181);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: rgb(110, 178, 217);
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
