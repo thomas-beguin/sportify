@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    @products = Product.all
     if params[:query].present?
       @query = params[:query]
       @products = Product.where("name LIKE ?", "%#{params[:query]}%")
