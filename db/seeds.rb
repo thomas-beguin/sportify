@@ -1,11 +1,11 @@
 User.destroy_all
 Product.destroy_all
 
-# user = User.new(first_name: "Bob",
-#                 last_name: "Dupont",
-#                 address: "14 rue du paradis, 75001 Paris",
-#                 email: "bob.dupont@mail.com",
-#                 password: "password")
+user = User.new(first_name: "Bob",
+                last_name: "Dupont",
+                address: "14 rue du paradis, 75001 Paris",
+                email: "bob.dupont@mail.com",
+                password: "password")
 user = User.new(email: "bob.dupont@mail.com",
                 password: "password")
 
