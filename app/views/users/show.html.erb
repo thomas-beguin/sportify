@@ -3,10 +3,14 @@
 
   <h2>My current rent</h2>
 
-
   <h2>Previous rent</h2>
 
-  <h2>My products</h2>
+  <div class="d-flex">
+    <h2>My products (<%= @user.products.length %>)</h2>
+    <%= link_to new_product_path do %>
+      <button type="button" class="btn btn-light">Add a new product</button>
+    <% end %>
+  </div>
 
   <div class="row mb-3 ">
     <% @user.products.each do |product| %>
