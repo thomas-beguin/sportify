@@ -20,10 +20,34 @@
     <div class="col-4">
       <div class="product-show-card">
         <h5>Book this product!</h5>
-        <%= simple_form_for [@product, @booking] do |f| %>
-          <%= f.input :start_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
-          <%= f.input :end_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
-          <%= f.input :price, disabled: true, input_html: { value: @product.price_per_day }%>
+
+
+        <%= simple_form_for [@product, @booking], html: {
+              data: {
+                controller: 'flatpickr'
+              }
+            }  do |f| %>
+          <%= f.input :start_date, label: false, as: :string,
+                                  input_html: {
+                                    class: 'd-none',
+                                    data: {
+                                      flatpickr_target: 'startDateInput',
+                                      dynamic_booking_price_target: 'startDateInput',
+                                      action: 'change->dynamic-booking-price#updatePrice'
+                                    }
+                                } %>
+          <%= f.input :end_date, label: false, as: :string,
+                                  input_html: {
+                                    class: 'd-none',
+                                    data: {
+                                      flatpickr_target: 'endDateInput',
+                                      dynamic_booking_price_target: 'endDateInput',
+                                      action: 'change->dynamic-booking-price#updatePrice'
+                                    }
+                                } %>
+          <%# <%= f.input :price, disabled: true, input_html: { value: @product.price_per_day } %>
+          <span data-dynamic-booking-price-target="priceHolder"><%= @product.price_per_day %></span>
+
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.submit class: 'btn btn-primary' %>
