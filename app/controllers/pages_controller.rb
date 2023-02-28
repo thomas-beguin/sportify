@@ -15,7 +15,8 @@ class PagesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    redirect_to root_path if @user != current_user
+    @current_rent = current_user.bookings.select { |booking| booking.start_date <= Date.today && booking.end_date >= Date.today }
+    @previous_rent = current_user.bookings.select { |booking| booking.end_date < Date.today }
+    @products = current_user.products
   end
 end
