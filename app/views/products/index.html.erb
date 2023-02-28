@@ -9,15 +9,16 @@
 <p>Find me in app/views/pages/home.html.erb</p> %>
 
   <div id="recherche">
-    <h3>Barre de recherche<h3>
+    <h3>Search bar<h3>
   </div>
+
+<%= link_to "Add a new product", new_product_path %>
 
 <div class="banner">
   <div class="container">
     <h1>Sportify</h1>
   </div>
 </div>
-
 
 <div class="row mb-3 ">
     <% @products.each do |product| %>
@@ -61,4 +62,3 @@
       </div>
     <% end %>
   </div>
-
