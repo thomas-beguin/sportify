@@ -1,4 +1,15 @@
 <h1> Booking </h1>
+<%= cl_image_tag @booking.product.photos[0].key, class:"img w-25", crop: :fill %>
 <p>Product_id <%= @booking.product_id %></p>
 <p>User_id <%= @booking.user_id %></p>
 <p>Price <%= @booking.price %></p>
+<%= @booking.product.name %>
+<br>
+<%= @booking.product.price_per_day %>
+<br>
+<br>
+<%= @booking.start_date %>
+<br>
+<%= @booking.end_date %>
+<br>
+<%= link_to "Edit Booking", edit_booking_path(@booking) %>

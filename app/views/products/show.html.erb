@@ -5,16 +5,29 @@
       <p><%= @product.category %></p>
       <p><%= @product.year_of_purchase %></p>
       <p><%= @product.condition %></p>
+      <%= @product.price_per_day %>€
+
     </div>
+
 
     <div class="col-4">
       <div class="flat-show-card">
         <h5>Book this product!</h5>
 
-        <form action="">
+        <%= simple_form_for [@product, @booking] do |f| %>
+          <%= f.input :start_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
+          <%= f.input :end_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
+          <%= f.input :price, input_html: { value: @product.price_per_day } %>
+          <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+
+        <%# <form action="">
           <div class="input-group">
             <span class="input-group-text" id="start-date-label">From:</span>
             <input type="text" class="form-control" placeholder="12/10/2023" aria-label="start-date" aria-describedby="start-date-label">
+            <input type="date" name="" id="">
           </div>
           <div class="input-group mt-2">
             <span class="input-group-text" id="end-date-label">To:</span>
