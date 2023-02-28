@@ -1,6 +1,7 @@
 <div class="container">
 
-  <div class="mb-5 mt-3">
+  <div class="mb-5 mt-3 d-flex">
+    <%= cl_image_tag current_user.photo.key, crop: :fill, style:"height: 50px; width: 50px", class:"me-3 rounded-circle" %>
     <h1>Hello <%= current_user.first_name %></h1>
   </div>
 
