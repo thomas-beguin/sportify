@@ -22,7 +22,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking), status: :see_other
     else
-      render :new, status: :unprocessable_entity
+      @product = Product.find(params[:id])
+      render "products/show", status: :unprocessable_entity
     end
   end
 
