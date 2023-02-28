@@ -26,14 +26,17 @@
             <div>
               <%= link_to product_path(product), class:"text-decoration-none test" do %>
                 <% if product.photos.attached? %>
-                  <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-ride="carousel">
+                  <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-interval="false">
+
                     <div class="carousel-inner">
                       <% product.photos.each_with_index do |photo, index| %>
+
                         <div class="carousel-item  <%= "active" if index == 0%>">
-                          <%= cl_image_tag photo.key, class:"card-img-top", width: 300, height: 300, crop: :scale %>
+                          <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 250px;object-fit: cover;" %>
                         </div>
                       <% end %>
                     </div>
+
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
@@ -42,10 +45,13 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class = "visually-hidden">Next</span>
                     </button>
+
                   </div>
+
                 <% else %>
                   <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
               <% end %>
+
               <div class="card-body">
                 <strong class="h4"><%= product.name.capitalize %></strong>
                 <p class = "text-info" ><strong class="display-5"><%= product.price_per_day %></strong>€/day</p>
