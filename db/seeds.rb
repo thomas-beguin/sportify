@@ -8,6 +8,9 @@
 
 require "open-uri"
 
+Product.destroy_all
+User.destroy_all
+
 user = User.new(email: "m@gmail.com", password: "123456")
 user.save
 
@@ -18,6 +21,7 @@ user.save
     year_of_purchase: "2021",
     condition: "Neuf"
   )
+
   file = URI.open("https://s1.1zoom.me/b4340/106/Skiing_Men_Jump_Snow_513852_3840x2400.jpg")
   product.photos.attach(io: file, filename: "ski.png", content_type: "image/png")
   product.user = User.all.sample
@@ -32,6 +36,8 @@ user.save
   )
   file = URI.open("https://img.static-rmg.be/a/view/q75/w/h/2321875/marco-lopez-z2jzpd0e9lo-unsplash-jpg.jpg")
   product.photos.attach(io: file, filename: "paddle.png", content_type: "image/png")
+  file = URI.open("https://static.netshoes.com.br/produtos/prancha-stand-up-paddle-nautika-spk-2/64/535-0001-164/535-0001-164_zoom4.jpg?ts=1590180973&")
+  product.photos.attach(io: file, filename: "paddle2.png", content_type: "image/png")
   product.user = User.all.sample
   product.save!
 
