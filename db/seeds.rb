@@ -24,11 +24,11 @@ PHOTOS_URL = ["https://s1.1zoom.me/b4340/106/Skiing_Men_Jump_Snow_513852_3840x24
 
 puts "Creating Users"
 
-admin_user   = User.new(email: "admin@mail.com",   password: "password", first_name: "Bob",    last_name: "L'admin")
-client_user1 = User.new(email: "client1@mail.com", password: "password", first_name: "Marie",  last_name: "Sixtine")
-client_user2 = User.new(email: "client2@mail.com", password: "password", first_name: "Thomas", last_name: "Pesquet")
-client_user3 = User.new(email: "client3@mail.com", password: "password", first_name: "Louis",  last_name: "Quatorze")
-owner_user   = User.new(email: "owner@mail.com",   password: "password", first_name: "Fred",   last_name: "Eric")
+admin_user   = User.new(email: "admin@mail.com",   password: "password", first_name: "Bob",    last_name: "L'admin",  address: Faker::Address.full_address, admin: true)
+client_user1 = User.new(email: "client1@mail.com", password: "password", first_name: "Marie",  last_name: "Sixtine",  address: Faker::Address.full_address)
+client_user2 = User.new(email: "client2@mail.com", password: "password", first_name: "Thomas", last_name: "Pesquet",  address: Faker::Address.full_address)
+client_user3 = User.new(email: "client3@mail.com", password: "password", first_name: "Louis",  last_name: "Quatorze", address: Faker::Address.full_address)
+owner_user   = User.new(email: "owner@mail.com",   password: "password", first_name: "Fred",   last_name: "Eric",     address: Faker::Address.full_address)
 
 admin_user.save!
 puts "Admin: #{admin_user}"
