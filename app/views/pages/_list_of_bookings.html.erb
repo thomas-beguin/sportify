@@ -1,0 +1,21 @@
+
+<div class="row">
+  <% bookings.each do |booking| %>
+    <div class="col-3 mt-3">
+      <% product = booking.product %>
+      <%= link_to product_path(product), class:"text-decoration-none" do %>
+        <div class="card">
+          <div class="card-body">
+            <strong><%= booking.product.name %></strong>
+            <p class="text-muted" ><%= booking.price %>€</p>
+            <span class="text-muted" ><%= booking.start_date %> - </span>
+            <span class="text-muted" ><%= booking.end_date %></span>
+            <% if (booking.end_date - Date.today).to_i >= 0%>
+              <span class="text-muted" >(<%= (booking.end_date - Date.today).to_i %> days left)</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
