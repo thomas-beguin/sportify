@@ -1,9 +1,9 @@
 <%= simple_form_for @product do |f| %>
   <%= f.input :name %>
-  <%= f.input :category %>
+  <%= f.input :category, as: :select, collection: ["Winter Sports", "Water Sports", "Collective Sports", "Individual Sports"]%>
   <%= f.input :price_per_day %>
   <%= f.input :year_of_purchase %>
-  <%= f.input :condition %>
+  <%= f.input :condition, as: :select, collection: ["Fantastic", "Good", "Used", "Very old but still functionning"]%>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit class: 'btn btn-flat' %>
 <% end %>
