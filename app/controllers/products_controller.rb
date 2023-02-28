@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
-    @products = Product.all
+    @products = policy_scope(Product)
     if params[:query].present?
       @query = params[:query]
       @products = Product.where("name LIKE ?", "%#{params[:query]}%")
@@ -10,16 +10,19 @@ class ProductsController < ApplicationController
   end
 
   def show
+    authorize @product
     @booking = Booking.new
   end
 
   def new
     @product = Product.new
+    authorize @product
   end
 
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+    authorize @product
     if @product.save
       redirect_to product_path(@product)
     else
@@ -28,9 +31,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize @product
   end
 
   def update
+    authorize @product
     if @product.update(product_params)
       redirect_to product_path(@product)
     else

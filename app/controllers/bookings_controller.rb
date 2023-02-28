@@ -3,18 +3,22 @@ class BookingsController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @bookings = Booking.where(user_id: @user)
+    @bookings = policy_scope(Booking)
+    # @bookings = Booking.where(user_id: @user)
   end
 
   def show
+    authorize @booking
   end
 
   def new
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
     if @booking.save
       redirect_to booking_path(@booking), status: :see_other
     else
@@ -26,6 +30,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    authorize @booking
     @booking.update(booking_params)
     redirect_to booking_path(@booking), status: :see_other
   end
