@@ -4,12 +4,14 @@
       <div class="bg-white rounded p-3 shadow">
         <h3>Edit Booking</h3>
         <%= simple_form_for @booking do |f| %>
-          <%= f.input :start_date %>
+          <%= f.input :start_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
           <%= f.input :end_date %>
           <%= f.input :price, disabled: true%>
-          <%= f.submit class: 'btn btn-flat' %>
+          <%= f.submit class: 'btn btn-primary' %>
         <% end %>
       </div>
+      <br>
+      <%= link_to "Return to Booking", booking_path(@booking) %>
     </div>
   </div>
 </div>

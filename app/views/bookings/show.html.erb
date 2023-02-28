@@ -2,3 +2,10 @@
 <p>Product_id <%= @booking.product_id %></p>
 <p>User_id <%= @booking.user_id %></p>
 <p>Price <%= @booking.price %></p>
+
+<%= @booking.product.name %>
+<%= @booking.product.price_per_day %>
+<%= @booking.product.photos %>
+
+<%= link_to "Edit Booking", edit_booking_path(@booking) %>
+
