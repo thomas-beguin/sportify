@@ -5,7 +5,7 @@
         <h3>Edit Booking</h3>
         <%= simple_form_for @booking do |f| %>
           <%= f.input :start_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
-          <%= f.input :end_date %>
+          <%= f.input :end_date, as: :date, order: [:day, :month, :year], start_date: Date.today %>
           <%= f.input :price, disabled: true%>
           <%= f.submit class: 'btn btn-primary' %>
         <% end %>
