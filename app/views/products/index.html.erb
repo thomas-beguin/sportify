@@ -4,61 +4,62 @@
       <h1>All our available products</h1>
     </div>
   </div>
-
+</div>
 <%# <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p> %>
 
-  <div id="recherche">
-    <h3>Search bar<h3>
+<%= simple_form_for :search, url: root_path, method: :get do |f| %>
+<h1>Sportify</h1>
+  <div class="search-form-control form-group">
+    <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+    <button name="button" type="submit" class="btn btn-flat">
+      <i class="fas fa-search"></i> Search
+    </button>
   </div>
+<% end %>
 
-<%= link_to "Add a new product", new_product_path %>
-
-<div class="banner">
-  <div class="container">
-    <h1>Sportify</h1>
-  </div>
-</div>
 
 <div class="row mb-3 ">
     <% @products.each do |product| %>
       <div class="col-4 mb-3">
-        <div class="card h-100">
-          <% if product.photos.attached? %>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <% product.photos.each do |photo| %>
-                  <div class="carousel-item active">
-                    <%= cl_image_tag photo.key, class:"card-img-top", crop: :fill %>
-                  </div>
-                <% end %>
+        <%= link_to product_path(product) do %>
+          <div class="card h-100">
+            <% if product.photos.attached? %>
+              <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% product.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= "active" if index == 0%>">
+                      <%= cl_image_tag photo.key, class:"card-img-top", crop: :fill %>
+                    </div>
+                  <% end %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+            <% else %>
+              <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
+            <% end %>
+            <div class="card-body">
+              <strong><%= product.name %></strong>
+              <p class="text-muted" ><%= product.price_per_day %>€/day</p>
+              <span>
+                <%= link_to "Edit", edit_product_path(product) %>
+              </span>
+              <span>
+                <%= link_to "delete",
+                                product_path(product),
+                                data: {turbo_method: :delete,
+                                      turbo_confirm: "Are you sure?"} %>
+              </span>
             </div>
-          <% else %>
-            <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-          <% end %>
-          <div class="card-body">
-            <strong><%= product.name %></strong>
-            <p class="text-muted" ><%= product.price_per_day %>€/day</p>
-            <span>
-              <%= link_to "Edit", edit_product_path(product) %>
-            </span>
-            <span>
-              <%= link_to "delete",
-                              product_path(product),
-                              data: {turbo_method: :delete,
-                                    turbo_confirm: "Are you sure?"} %>
-            </span>
           </div>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>

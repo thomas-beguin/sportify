@@ -1,15 +1,19 @@
 <div class="container">
-  <h1>Hello <%= @user.first_name %></h1>
+  <h1>Hello <%= current_user.first_name %></h1>
 
   <h2>My current rent</h2>
 
-
   <h2>Previous rent</h2>
 
-  <h2>My products</h2>
+  <div class="d-flex">
+    <h2>My products (<%= current_user.products.length %>)</h2>
+    <%= link_to new_product_path do %>
+      <button type="button" class="btn btn-light">Add a new product</button>
+    <% end %>
+  </div>
 
   <div class="row mb-3 ">
-    <% @user.products.each do |product| %>
+    <% current_user.products.each do |product| %>
       <div class="col-4 mb-3">
         <div class="card h-100">
           <% if product.photos.attached? %>
@@ -51,5 +55,4 @@
       </div>
     <% end %>
   </div>
-
 </div>
