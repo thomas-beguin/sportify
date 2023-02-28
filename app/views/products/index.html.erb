@@ -21,45 +21,42 @@
 
 <div class="row mb-3 ">
     <% @products.each do |product| %>
-      <div class="col-4 mb-3">
-        <%= link_to product_path(product) do %>
+      <div class="col-3 mb-3">
           <div class="card h-100">
-            <% if product.photos.attached? %>
-              <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <% product.photos.each_with_index do |photo, index| %>
-                    <div class="carousel-item <%= "active" if index == 0%>">
-                      <%= cl_image_tag photo.key, class:"card-img-top", crop: :fill %>
+            <div>
+              <%= link_to product_path(product), class:"text-decoration-none test" do %>
+                <% if product.photos.attached? %>
+                  <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% product.photos.each_with_index do |photo, index| %>
+                        <div class="carousel-item  <%= "active" if index == 0%>">
+                          <%= cl_image_tag photo.key, class:"card-img-top", width: 300, height: 300, crop: :scale %>
+                        </div>
+                      <% end %>
                     </div>
-                  <% end %>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-                </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class = "visually-hidden">Next</span>
+                    </button>
+                  </div>
+                <% else %>
+                  <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
+              <% end %>
+              <div class="card-body">
+                <strong class="h4"><%= product.name.capitalize %></strong>
+                <p class = "text-info" ><strong class="display-5"><%= product.price_per_day %></strong>€/day</p>
               </div>
-            <% else %>
-              <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-            <% end %>
-            <div class="card-body">
-              <strong><%= product.name %></strong>
-              <p class="text-muted" ><%= product.price_per_day %>€/day</p>
-              <span>
-                <%= link_to "Edit", edit_product_path(product) %>
-              </span>
-              <span>
-                <%= link_to "delete",
-                                product_path(product),
-                                data: {turbo_method: :delete,
-                                      turbo_confirm: "Are you sure?"} %>
-              </span>
+              <% end %>
+            </div>
+            <div class = "d-flex justify-content-between ps-3 pe-3 pb-2 mt-0">
+              <%= link_to "Edit", edit_product_path(product), class:"text-decoration-none text-muted" %>
+              <%= link_to "Delete", product_path(product), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none text-muted" %>
             </div>
           </div>
-        <% end %>
       </div>
     <% end %>
   </div>
