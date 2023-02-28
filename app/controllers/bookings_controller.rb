@@ -19,10 +19,11 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     authorize @booking
+    @product = Product.find(params[:product_id])
+    @booking.price = @product.price_per_day * (@booking.end_date - @booking.start_date)
     if @booking.save
       redirect_to booking_path(@booking), status: :see_other
     else
-      @product = Product.find(params[:id])
       render "products/show", status: :unprocessable_entity
     end
   end

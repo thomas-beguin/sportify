@@ -49,6 +49,10 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other
   end
 
+
+
+
+
   private
 
   def set_product
