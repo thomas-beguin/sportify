@@ -28,13 +28,15 @@
 
 
     <div class="col-4">
-      <div class="product-show-card" data-controller="dynamic-booking-price" data-dynamic-booking-price-price-value="<%= @product.price_per_day %>">>
+      <div class="product-show-card" data-controller="dynamic-booking-price"
+      data-dynamic-booking-price-price-value="<%= @product.price_per_day %>">
         <h5>Book this product!</h5>
 
 
         <%= simple_form_for [@product, @booking], html: {
               data: {
-                controller: 'flatpickr'
+                controller: 'flatpickr',
+                flatpickr_dates_value: @product.flatpickr_booked_dates_object
               }
             }  do |f| %>
           <%= f.input :start_date, label: false, as: :string,
