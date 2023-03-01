@@ -28,7 +28,7 @@
 
 
     <div class="col-4">
-      <div class="product-show-card">
+      <div class="product-show-card" data-controller="dynamic-booking-price" data-dynamic-booking-price-price-value="<%= @product.price_per_day %>">>
         <h5>Book this product!</h5>
 
 
@@ -55,16 +55,15 @@
                                       action: 'change->dynamic-booking-price#updatePrice'
                                     }
                                 } %>
-          <%# <%= f.input :price, disabled: true, input_html: { value: @product.price_per_day } %>
-          <span data-dynamic-booking-price-target="priceHolder"><%= @product.price_per_day %></span>
-
+          <p>
+            <span data-dynamic-booking-price-target="priceHolder"><%= @product.price_per_day %></span>
+            <span>€</span>
+          </p>
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
           <%= f.submit class: 'btn btn-primary' %>
         <% end %>
       </div>
     </div>
-
   </div>
-
 </div>
