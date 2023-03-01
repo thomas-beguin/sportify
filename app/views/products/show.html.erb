@@ -6,14 +6,24 @@
   <div class="row mt-3">
 
     <div class="col-8">
-      <div class="border-bottom d-flex align-items-center justify-content-between p-2">
+      <div class="border-bottom d-flex align-items-center justify-content-between pb-3">
         <h3>Equipement loué par <%= @product.user.first_name %></h3>
         <%= cl_image_tag @product.user.photo.key, crop: :fill, class:"rounded-circle", style:"width:70px; height:70px;" %>
       </div>
-      <p><%= @product.category %></p>
-      <p><%= @product.year_of_purchase %></p>
-      <p><%= @product.condition %></p>
-      <%= @product.price_per_day %>€
+      <div class="border-bottom pt-3">
+        <div class="d-flex align-items-center p-3">
+          <%= image_tag "sport.svg", height: 30, width: 30, alt: "Sport" %>
+          <div class="ps-3"><%= "#{@product.sport}" %></div>
+        </div>
+        <div class="d-flex align-items-center p-3">
+          <%= image_tag "time.svg", height: 30, width: 30, alt: "Years of use" %>
+          <div class="ps-3"><%= "Manufactured in #{@product.year_of_purchase}" %></div>
+        </div>
+        <div class="d-flex align-items-center p-3">
+          <%= image_tag "condition.svg", height: 30, width: 30, alt: "Condition" %>
+          <div class="ps-3"><%= "The product is in #{@product.condition} condition" %></div>
+        </div>
+      </div>
     </div>
 
 
