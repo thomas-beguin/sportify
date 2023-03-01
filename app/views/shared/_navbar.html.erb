@@ -16,13 +16,13 @@
           </li>
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "My dashboard", page_path(current_user), class: "nav-link" %>
+              <%= link_to "My dashboard", dashboard_path, class: "nav-link" %>
             </li>
             <li class="nav-item dropdown">
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, crop: :fill, style:"height: 40px; width: 40px" %>
               <% else %>
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= image_tag "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fGJsZXV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Edit my profile", edit_user_registration_path, class: "dropdown-item" %>

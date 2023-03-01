@@ -1,8 +1,12 @@
 <div class="container">
 
-  <div class="mb-5 mt-3 d-flex">
-    <%= cl_image_tag current_user.photo.key, crop: :fill, style:"height: 50px; width: 50px", class:"me-3 rounded-circle" %>
-    <h1>Hello <%= current_user.first_name %></h1>
+  <div class="mb-5 mt-3 d-flex align-items-center">
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar-large me-2", crop: :fill %>
+    <% else %>
+      <%= image_tag "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fGJsZXV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60", class: "avatar-large me-2" %>
+    <% end %>
+    <h1 class="m-0">Hello <%= current_user.first_name %></h1>
   </div>
 
   <div class="mb-5">

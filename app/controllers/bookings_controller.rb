@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     authorize @booking
     @product = Product.find(params[:product_id])
-    @booking.price = @product.price_per_day * (@booking.end_date - @booking.start_date)
+    @booking.price = @product.price_per_day * (@booking.end_date - @booking.start_date) + @product.price_per_day
     if @booking.save
       redirect_to booking_path(@booking), status: :see_other
     else
