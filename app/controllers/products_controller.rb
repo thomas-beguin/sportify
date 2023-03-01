@@ -4,6 +4,15 @@ class ProductsController < ApplicationController
 
   def index
     @products = policy_scope(Product)
+    @markers = @products.geocoded.map do |product|
+      {
+        lat: product.latitude,
+        lng: product.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {product: product}),
+        marker_html: render_to_string(partial: "marker", locals: {product: product}) # Pass the product to the partial
+      }
+    end
+
     if params[:query].present?
       @query = params[:query]
       @products = Product.where("name LIKE ?", "%#{params[:query]}%")

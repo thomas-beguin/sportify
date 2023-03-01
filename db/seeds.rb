@@ -18,9 +18,16 @@ PRICE = %w[10 20 15 12.5 8.5 30 100 3]
 YEAR = %w[2000 2010 2022 2020]
 CONDITION = %w[bad ok good new]
 PHOTOS_URL = ["https://s1.1zoom.me/b4340/106/Skiing_Men_Jump_Snow_513852_3840x2400.jpg",
-          "https://img.static-rmg.be/a/view/q75/w/h/2321875/marco-lopez-z2jzpd0e9lo-unsplash-jpg.jpg",
-          "https://www.espace-des-marques.com/152006-thickbox_default/raquette-de-tennis-noire-junior-babolat-ballfighter-25.jpg",
-          "https://balenciaga.dam.kering.com/m/6e0b67f1dc05615e/Medium-724729T01311000_F.jpg?v=2"]
+              "https://img.static-rmg.be/a/view/q75/w/h/2321875/marco-lopez-z2jzpd0e9lo-unsplash-jpg.jpg",
+              "https://www.espace-des-marques.com/152006-thickbox_default/raquette-de-tennis-noire-junior-babolat-ballfighter-25.jpg",
+              "https://balenciaga.dam.kering.com/m/6e0b67f1dc05615e/Medium-724729T01311000_F.jpg?v=2"]
+
+ADDRESS = ["26 rue de la montagne sainte genevieve",
+           "68 avenue parmentier",
+           "7 rue lisse des cordeliers",
+           "la rotonde, aix-en-provence",
+           "134 quai de bacalan, bordeaux",
+           "3 rue des acacias, chartres"]
 
 puts "Creating Users"
 
@@ -50,7 +57,8 @@ puts "Creating Products and Bookings"
     category: CATEGORY.sample,
     price_per_day: PRICE.sample,
     year_of_purchase: YEAR.sample,
-    condition: CONDITION.sample
+    condition: CONDITION.sample,
+    address: ADDRESS.sample,
   )
   PHOTOS_URL.shuffle.each { |url| product.photos.attach(io: URI.open(url), filename: "seed.png", content_type: "image/png") }
   product.user = owner_user
