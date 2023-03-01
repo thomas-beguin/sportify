@@ -9,10 +9,10 @@ class Product < ApplicationRecord
 
   CATEGORY = [
     'Bikes & Cycling',
-    'Hike & Camp',
-    'Exercise & Fitness',
     'Dance',
+    'Exercise & Fitness',
     'Golf',
+    'Hike & Camp',
     'Outdoors',
     'Precision Sports',
     'Racket Sports',
@@ -79,7 +79,7 @@ class Product < ApplicationRecord
     'Winter Accessories'
   ]
 
-  CONDITION = ["As new", "In good condition", "Shows signs of usage", "Is very old but still functionning"]
+  CONDITION = ["Is as new", "Is in good condition", "Shows signs of usage", "Is very old but still functionning"]
 
   validates :category, inclusion: { in: CATEGORY,
       message: "%{value} is not a valid category" }

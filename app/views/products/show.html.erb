@@ -7,7 +7,7 @@
 
     <div class="col-8">
       <div class="border-bottom d-flex align-items-center justify-content-between pb-3">
-        <h3>Equipement loué par <%= @product.user.first_name %></h3>
+        <h3>Rent this item offered by <strong><%= @product.user.first_name %></strong></h3>
         <%= cl_image_tag @product.user.photo.key, crop: :fill, class:"rounded-circle", style:"width:70px; height:70px;" %>
       </div>
       <div class="border-bottom pt-3">
@@ -21,7 +21,7 @@
         </div>
         <div class="d-flex align-items-center p-3">
           <%= image_tag "condition.svg", height: 30, width: 30, alt: "Condition" %>
-          <div class="ps-3"><%= "The product is in #{@product.condition} condition" %></div>
+          <div class="ps-3"><%= "The product #{@product.condition.downcase}" %></div>
         </div>
       </div>
     </div>
