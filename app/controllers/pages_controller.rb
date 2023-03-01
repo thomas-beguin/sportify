@@ -15,8 +15,20 @@ class PagesController < ApplicationController
   end
 
   def show
-    @current_rent = current_user.bookings.select { |booking| booking.start_date <= Date.today && booking.end_date >= Date.today }
+    # CLIENT PART
+    @current_rent = current_user.bookings.select { |booking| booking.end_date >= Date.today }
     @previous_rent = current_user.bookings.select { |booking| booking.end_date < Date.today }
+
+
+    # OWNER PART
     @products = current_user.products
+    @bookings = @products.map(&:bookings).flatten
+    @bookings.each { |booking| booking.passed! if booking.end_date < Date.today }
+
+    @bookings_accepted = @bookings.select(&:accepted?)
+    @bookings_passed = @bookings.select(&:passed?)
+    @bookings_pending = @bookings.select(&:pending?)
+
+    @products_rent = current_user.products.select { |product| product.bookings.select { |booking| booking.accepted? } }
   end
 end

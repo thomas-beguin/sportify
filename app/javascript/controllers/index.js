@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import DashboardController from "./dashboard_controller"
+application.register("dashboard", DashboardController)
+
 import FlatpickrController from "./flatpickr_controller"
 application.register("flatpickr", FlatpickrController)
 

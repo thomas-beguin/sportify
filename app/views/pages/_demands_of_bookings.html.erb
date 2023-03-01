@@ -1,0 +1,10 @@
+
+  <% bookings_pending.each do |booking| %>
+
+      <div class="w-100 m-3 border">
+        <button class="btn btn-ligth"><%= booking.user.first_name %> wants to rent your product : <%= booking.product.name %></button>
+        <%= button_to "Accept", accept_booking_path(booking), method: :post %>
+        <%= button_to "Refuse", refuse_booking_path(booking), method: :post %>
+      </div>
+
+  <% end %>
