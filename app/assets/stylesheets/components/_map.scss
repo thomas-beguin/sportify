@@ -6,3 +6,30 @@
   text-align: center;
   font-family: "Open Sans", sans-serif;
 }
+
+.mapbox-map {
+  width: 100%;
+  height: 90vh;
+  top: 50px;
+  z-index: 5;
+  visibility: visible;
+  position: fixed !important;
+}
+
+.hide-map {
+  visibility: hidden;
+}
+
+.cta-map {
+  z-index: 10;
+}
+
+.div-cta-map {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  position: sticky;
+  align-items: center;
+  bottom: 40px;
+  z-index: 10;
+}
