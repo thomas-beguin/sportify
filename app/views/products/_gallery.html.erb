@@ -1,0 +1,31 @@
+<div class="row image-gallery">
+
+  <div class="col-6 p-2">
+    <%= cl_image_tag product.photos.first.key, style:"height: 600px"%>
+  </div>
+
+  <div class="col-6">
+    <div class="row">
+
+      <div class="col-6 p-2">
+        <%= cl_image_tag product.photos[1].key if @product.photos[1]%>
+      </div>
+
+      <div class="col-6 p-2">
+        <%= cl_image_tag product.photos[2].key if @product.photos[2]%>
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-6 p-2">
+        <%= cl_image_tag product.photos[3].key if @product.photos[3]%>
+      </div>
+
+      <div class="col-6 p-2">
+        <%= cl_image_tag product.photos[4].key if @product.photos[4] %>
+      </div>
+
+    </div>
+  </div>
+</div>
