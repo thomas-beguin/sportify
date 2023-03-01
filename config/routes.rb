@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'users/show'
   devise_for :users
-  resources  :pages, only: %i[show]
+  # resources  :pages, only: %i[show]
+  get "/dashboard", to: "pages#show"
   root to: "products#index"
   resources :products do
     resources :bookings, only: %i[new create]
