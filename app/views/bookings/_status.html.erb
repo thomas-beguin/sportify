@@ -1,0 +1,10 @@
+ <% case booking.status %>
+ <% when "pending" %>
+  <span class="badge bg-warning text-dark h-100" style="font-size: 18px;"><%= booking.status %></span>
+ <% when "accepted" %>
+  <span class="badge bg-success h-100" style="font-size: 18px;"><%= booking.status %></span>
+ <% when "refused" %>
+  <span class="badge bg-danger h-100" style="font-size: 18px;"><%= booking.status %></span>
+ <% when "passed" %>
+  <span class="badge bg-light text-dark h-100" style="font-size: 18px;"><%= booking.status %></span>
+<% end %>

@@ -26,7 +26,23 @@
     <%= render "pages/list_of_bookings", bookings: @previous_rent %>
   </div>
 
-  <div class="mb-5">
-    <%= render "pages/list_of_products", list_of_products: @products %>
+  <div class="d-flex">
+    <h2>My products (<%= @products.length %>)</h2>
+
+    <%= link_to new_product_path do %>
+      <button type="button" class="btn btn-light">Add a new product</button>
+    <% end %>
+  </div>
+
+    <% @products.each do |product| %>
+      <% product.bookings.each do |booking| %>
+        <% if booking.status == "pending" %>
+          <button class="btn btn-ligth"><%= booking.user.first_name %> wants to rent your product : <%= booking.product.name %></button>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <div class="row mb-5">
+    <%= render 'products/carousel', products: @products %>
   </div>
 </div>

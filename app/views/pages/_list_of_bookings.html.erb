@@ -11,6 +11,7 @@
             <span class="text-muted" ><%= booking.start_date %> - </span>
             <span class="text-muted" ><%= booking.end_date %></span>
             <% if (booking.end_date - Date.today).to_i >= 0%>
+              <%= render "bookings/status", booking: booking %>
               <span class="text-muted" >(<%= (booking.end_date - Date.today).to_i %> days left)</span>
             <% end %>
           </div>

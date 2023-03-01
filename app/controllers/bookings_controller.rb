@@ -42,6 +42,8 @@ class BookingsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  
+
   private
 
   def set_booking

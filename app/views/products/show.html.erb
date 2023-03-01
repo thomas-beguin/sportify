@@ -8,7 +8,11 @@
     <div class="col-8">
       <div class="border-bottom d-flex align-items-center justify-content-between p-2">
         <h3>Equipement loué par <%= @product.user.first_name %></h3>
-        <%= cl_image_tag @product.user.photo.key, crop: :fill, class:"rounded-circle", style:"width:70px; height:70px;" %>
+        <% if @product.user.photo.attached? %>
+          <%= cl_image_tag @product.user.photo.key, crop: :fill, class:"avatar-large" %>
+        <% else %>
+          <%= image_tag "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fGJsZXV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60", class: "avatar-large" %>
+        <% end %>
       </div>
       <p><%= @product.category %></p>
       <p><%= @product.year_of_purchase %></p>
