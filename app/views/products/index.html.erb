@@ -21,75 +21,64 @@
   </div>
 <% end %>
 
+<div data-controller="showmap">
+  <div class="row mb-3 ">
+      <% @products.each do |product| %>
+        <div class="col-3 mb-3">
+            <div class="card h-100">
+              <div>
+                <%= link_to product_path(product), class:"text-decoration-none test" do %>
+                  <% if product.photos.attached? %>
+                    <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-interval="false">
 
-<div class="row mb-3 ">
-    <% @products.each do |product| %>
-      <div class="col-3 mb-3">
-          <div class="card h-100">
-            <div>
-              <%= link_to product_path(product), class:"text-decoration-none test" do %>
-                <% if product.photos.attached? %>
-                  <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-interval="false">
+                      <div class="carousel-inner">
+                        <% product.photos.each_with_index do |photo, index| %>
 
-                    <div class="carousel-inner">
-                      <% product.photos.each_with_index do |photo, index| %>
+                          <div class="carousel-item  <%= "active" if index == 0%>">
+                            <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 250px;object-fit: cover;" %>
+                          </div>
+                        <% end %>
+                      </div>
 
-                        <div class="carousel-item  <%= "active" if index == 0%>">
-                          <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 250px;object-fit: cover;" %>
-                        </div>
-                      <% end %>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class = "visually-hidden">Next</span>
+                      </button>
+
                     </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=product.id%>" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class = "visually-hidden">Next</span>
-                    </button>
+                  <% else %>
+                    <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
+                <% end %>
 
-                  </div>
-
-                <% else %>
-                  <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-              <% end %>
-
-              <div class="card-body">
-                <strong class="h4"><%= product.name.capitalize %></strong>
-                <p class = "text-info" ><strong class="display-5"><%= product.price_per_day %></strong>€/day</p>
+                <div class="card-body">
+                  <strong class="h4"><%= product.name.capitalize %></strong>
+                  <p class = "text-info" ><strong class="display-5"><%= product.price_per_day %></strong>€/day</p>
+                </div>
+                <% end %>
               </div>
-              <% end %>
+              <div class = "d-flex justify-content-between ps-3 pe-3 pb-2 mt-0">
+                <%= link_to "Edit", edit_product_path(product), class:"text-decoration-none text-muted" %>
+                <%= link_to "Delete", product_path(product), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none text-muted" %>
+              </div>
             </div>
-            <div class = "d-flex justify-content-between ps-3 pe-3 pb-2 mt-0">
-              <%= link_to "Edit", edit_product_path(product), class:"text-decoration-none text-muted" %>
-              <%= link_to "Delete", product_path(product), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"text-decoration-none text-muted" %>
-            </div>
-          </div>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
   </div>
 
-<div id="map-box" class="mapbox-map hide-map"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
 
-<div class="div-cta-map">
-  <button class="cta-map" id="map-button" data-controller="show-map" data-action="click->show-map#show">Afficher la carte</button>
-</div>
+  <div id="map-box" class="mapbox-map hide-map"
+      data-controller="map"
+      data-showmap-target="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 
-<script>
-  const buttonMap = document.querySelector("#map-button");
-  const divMap = document.querySelector("#map-box");
-  function hideMap () {
-    divMap.classList.toggle("hide-map");
-    if (buttonMap.innerHTML == "Afficher la carte") {
-      buttonMap.innerHTML = "Afficher la liste"
-    } else {
-      buttonMap.innerHTML = "Afficher la carte"
-    }
-  };
-  buttonMap.addEventListener("click", hideMap);
-</script>
+  <div class="div-cta-map">
+    <button class="cta-map" id="map-button" data-showmap-target="ctamap" data-action="click->showmap#show">Afficher la carte</button>
+  </div>
+</div>
