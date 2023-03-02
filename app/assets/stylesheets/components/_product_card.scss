@@ -1,0 +1,25 @@
+.product-card {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.product-image{
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.product-description {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .product-name {
+    color: #333333;
+    font-weight: 600;
+  }
+
+  .product-price {
+    color: #333333;
+  }
+}
