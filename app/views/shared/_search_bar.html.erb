@@ -1,0 +1,15 @@
+
+<%= form_with url: root_path, method: :get, class: "d-flex search-form" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "search-bar",
+    placeholder: "Find a product",
+    autocomplete: "off"
+  %>
+
+  <%= button_tag type: 'submit', class: "search-button" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+
+
+<% end %>
