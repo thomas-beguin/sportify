@@ -6,3 +6,45 @@
   text-align: center;
   font-family: "Open Sans", sans-serif;
 }
+
+.mapbox-map {
+  width: 100%;
+  height: 100%;
+  top: 66px;
+  left: 0px;
+  z-index: 5;
+  visibility: visible;
+  position: fixed !important;
+  opacity: 1;
+  transition: 0.3s linear;
+}
+
+.hide-map {
+  visibility: hidden;
+  opacity: 0;
+  top: 1500px;
+  transition: 0.3s ease-in;
+}
+
+.cta-map {
+  z-index: 10;
+  background-color: #0D6EFD;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 30px;
+  border: none;
+}
+
+.div-cta-map {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  position: sticky;
+  align-items: center;
+  bottom: 60px;
+  z-index: 10;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 20px 20px 0 0 !important;
+}
