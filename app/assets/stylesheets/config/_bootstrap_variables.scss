@@ -18,6 +18,7 @@ $info:       $light-grey;
 $danger:     $red;
 $warning:    $orange;
 $light:      $super-light-grey;
+$white:      $white;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
@@ -25,3 +26,9 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+$nav-tabs-link-hover-border-color:  $sportify-green $sportify-green $sportify-green;
+$nav-tabs-border-color:             $sportify-green;
+$nav-link-disabled-color:           $light-grey;
+$nav-tabs-link-active-color:        $white;
+$nav-tabs-link-active-bg:           $sportify-green;
+$nav-tabs-border-radius:            5px;
