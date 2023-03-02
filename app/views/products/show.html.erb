@@ -18,7 +18,7 @@
         <div class="d-flex align-items-center p-3">
           <%= image_tag "sport.svg", height: 30, width: 30, alt: "Sport" %>
           <div class="ps-3"><%= "#{@product.sport}" %></div>
-        </div>
+        </div>x
         <div class="d-flex align-items-center p-3">
           <%= image_tag "time.svg", height: 30, width: 30, alt: "Years of use" %>
           <div class="ps-3"><%= "Manufactured in #{@product.year_of_purchase}" %></div>
@@ -28,6 +28,12 @@
           <div class="ps-3"><%= "The product #{@product.condition.downcase}" %></div>
         </div>
       </div>
+        <div id="map-box" class="mapbox-map hide-map"
+          data-controller="map"
+          data-showmap-target="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
     </div>
 
 
