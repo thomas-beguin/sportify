@@ -30,15 +30,16 @@
     <div class="col-4">
       <div class="product-show-card" data-controller="dynamic-booking-price"
       data-dynamic-booking-price-price-value="<%= @product.price_per_day %>">
-        <h5>Book this product!</h5>
 
-
+      <div class="test p-4 shadow d-flex justify-content-center align-items-center text-center">
         <%= simple_form_for [@product, @booking], html: {
               data: {
                 controller: 'flatpickr',
                 flatpickr_dates_value: @product.flatpickr_booked_dates_object
               }
             }  do |f| %>
+          <h5>Book this product!</h5>
+
           <%= f.input :start_date, label: false, as: :string,
                                   input_html: {
                                     class: 'd-none',
@@ -58,13 +59,15 @@
                                     }
                                 } %>
           <p>
-            <span data-dynamic-booking-price-target="priceHolder"><%= @product.price_per_day %></span>
+            <span>Total Price = </span><span data-dynamic-booking-price-target="priceHolder"><%= @product.price_per_day %></span>
             <span>€</span>
           </p>
           <%= f.input :product_id, as: :hidden, input_html: { value: @product.id } %>
           <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-          <%= f.submit class: 'btn btn-primary' %>
+          <%= f.submit class: 'btn btn-primary w-100' %>
         <% end %>
+
+      </div>
       </div>
     </div>
   </div>
