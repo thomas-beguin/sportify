@@ -22,6 +22,12 @@ class ProductsController < ApplicationController
   def show
     authorize @product
     @booking = Booking.new
+    @markers = {
+      lat: @product.latitude,
+      lng: @product.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {product: @product}),
+      marker_html: render_to_string(partial: "marker", locals: {product: @product})
+    }
   end
 
   def new
