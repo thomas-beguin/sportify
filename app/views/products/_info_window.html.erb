@@ -1,8 +1,10 @@
 <div>
-  <%= cl_image_tag product.photos.first.key, class: "rounded", style:"height: 150px; width: 100%; object-fit: cover"%>
-  <div class="align-items-start d-flex flex-column justify-content-start p-2">
-    <h3><%= product.name %></h3>
-    <p class="m-0"><%= product.address %></p>
-    <p class="m-0"><%= product.price_per_day %>€ per day</p>
-  </div>
+  <%= link_to product_path(product) do %>
+    <%= cl_image_tag product.photos.first.key, class: "rounded", style:"height: 150px; width: 100%; object-fit: cover"%>
+    <div class="align-items-start d-flex flex-column justify-content-start p-2">
+      <h3><%= product.name %></h3>
+      <p class="m-0"><%= product.address %></p>
+      <p class="m-0"><%= product.price_per_day %>€ per day</p>
+    </div>
+  <% end %>
 </div>
