@@ -14,9 +14,9 @@ class ProductsController < ApplicationController
     end
 
     if params[:query].present?
-      @query = params[:query]
-      @products = Product.where("name LIKE ?", "%#{params[:query]}%")
+      @products = Product.search_by_name_and_category_and_sport(params[:query])
     end
+
   end
 
   def show
