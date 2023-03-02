@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    authorize @booking
   end
 
   def update
@@ -37,7 +38,7 @@ class BookingsController < ApplicationController
     redirect_to booking_path(@booking), status: :see_other
   end
 
-  def delete
+  def destroy
     @booking.destroy
     redirect_to root_path, status: :see_other
   end
