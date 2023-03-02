@@ -22,4 +22,12 @@ class BookingPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def accept?
+    true
+  end
+
+  def refuse?
+    true
+  end
+
 end
