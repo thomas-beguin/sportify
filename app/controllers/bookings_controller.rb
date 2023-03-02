@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :accept, :refuse]
 
   def index
     @user = User.find(params[:id])
@@ -40,6 +40,18 @@ class BookingsController < ApplicationController
   def delete
     @booking.destroy
     redirect_to root_path, status: :see_other
+  end
+
+  def accept
+    authorize @booking
+    @booking.accepted!
+    redirect_to dashboard_path
+  end
+
+  def refuse
+    authorize @booking
+    @booking.refused!
+    redirect_to dashboard_path
   end
 
   private

@@ -1,4 +1,8 @@
-<h1> Booking </h1>
+<div class="d-flex align-items-center">
+  <h1 class="mb-0 me-2"> Booking </h1>
+  <%= render "bookings/status", booking: @booking %>
+</div>
+
 <%= cl_image_tag @booking.product.photos[0].key, class:"img w-25", crop: :fill %>
 <p>Product_id <%= @booking.product_id %></p>
 <p>User_id <%= @booking.user_id %></p>
