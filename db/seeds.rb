@@ -13,15 +13,23 @@ puts "Booking : #{Booking.all.length}"
 puts "---------------------------------------"
 
 NAME = %w[ski raquette snow clubs roller frisbee]
-CATEGORY = %w[tennis basketball football golf outdoor indoor]
 PRICE = %w[10 20 15 12.5 8.5 30 100 3]
 YEAR = %w[2000 2010 2022 2020]
+
 CONDITION = %w[bad ok good new]
+
+ADDRESS = ["26 rue de la montagne sainte genevieve",
+  "68 avenue parmentier",
+  "7 rue lisse des cordeliers",
+  "la rotonde, aix-en-provence",
+  "134 quai de bacalan, bordeaux",
+  "3 rue des acacias, chartres"]
+
 PHOTOS_URL = ["https://plus.unsplash.com/premium_photo-1664444389055-cae53b90b91c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-              "https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-              "https://images.unsplash.com/photo-1547447134-cd3f5c716030?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-              "https://images.unsplash.com/photo-1584984769572-eea0f1d6aaa7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
-              "https://images.unsplash.com/photo-1615743029595-36815c8afd33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"]
+  "https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1547447134-cd3f5c716030?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1584984769572-eea0f1d6aaa7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+  "https://images.unsplash.com/photo-1615743029595-36815c8afd33?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNrYXRlYm9hcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"]
 
 puts "Creating Users"
 
@@ -57,10 +65,12 @@ puts "Creating Products and Bookings"
 10.times do
   product = Product.new(
     name: NAME.sample,
-    category: CATEGORY.sample,
+    category: Product::CATEGORY.sample,
+    sport: Product::SPORT.sample,
     price_per_day: PRICE.sample,
     year_of_purchase: YEAR.sample,
-    condition: CONDITION.sample
+    condition: Product::CONDITION.sample,
+    address: ADDRESS.sample,
   )
   PHOTOS_URL.shuffle.each { |url| product.photos.attach(io: URI.open(url), filename: "seed.png", content_type: "image/png") }
   product.user = owner_user
