@@ -1,0 +1,35 @@
+.dashboard-title {
+  color: #333333;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.active-button {
+  // active border-2 border-bottom border-primary font-weight-bold mb-0 me-3 pb-0 text-black
+  border-bottom: solid 2px $primary ;
+  font-weight: 500;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-right: 10px;
+  color: black;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#client {
+  transition: all 1 ease-in-out;
+}
+
+.inactive-button {
+  font-weight: 100;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-right: 10px;
+  transition: all 1 ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

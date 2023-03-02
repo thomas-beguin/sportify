@@ -1,8 +1,8 @@
 <% products.each do |product| %>
   <div class="col-3 mb-3 mt-3">
       <div class="product-card h-100">
-        <div class="product-image">
-          <%= link_to product_path(product), class:"text-decoration-none" do %>
+        <%= link_to product_path(product), class:"text-decoration-none" do %>
+          <div class="product-image">
             <% if product.photos.attached? %>
               <div id="carouselExample-<%=product.id%>" class="carousel slide" data-bs-interval="false">
 
@@ -27,15 +27,15 @@
             <% else %>
               <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
             <% end %>
-          <% end %>
         </div>
 
-        <div class="product-description">
-          <span class="product-name"><%= product.name.capitalize %></span>
-          <span>Owner: <%= product.user.first_name.capitalize %></span>
-          <span class="product-price"><strong><%= product.price_per_day %> €</strong> per day</span>
+          <div class="product-description">
+            <span class="product-name"><%= product.name.capitalize %></span>
+            <span>Owner: <%= product.user.first_name.capitalize %></span>
+            <span><strong><%= product.price_per_day %> €</strong> per day</span>
 
-        </div>
+          </div>
+        <% end %>
         <!--
         <div class="card-body">
           <strong class="h4"><%= product.name.capitalize %></strong>
