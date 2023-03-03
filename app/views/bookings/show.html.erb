@@ -1,13 +1,13 @@
 <div class="container">
   <div class="title">
-    <h2>Congrats, here is your new booking!<%= render "bookings/status", booking: @booking %></h2>
+    <h3>Congrats, here is your new booking!<%= render "bookings/status", booking: @booking %></h3>
   </div>
 
   <div class="exemple">
     <div class="row">
 
       <div class="col-4">
-        <div class="carroussel">
+        <div class="carroussel shadow">
           <% if  @booking.product.photos.attached? %>
             <div id="carouselExample-<%=@booking.id%>" class="carousel slide w-100" data-bs-interval="false">
 
@@ -34,23 +34,34 @@
           <% end %>
         </div>
         <div class="booking-recap shadow">
-        <h3> Recap: </h3>
-        <br>
-        <i class="fa-solid fa-thumbs-up"></i> - <%= @booking.product.name.capitalize %>
-        <br>
-        <p>(daily cost) = <%= @booking.product.price_per_day %> € / day</p>
-        <br>
-        <i class="fa-regular fa-calendar"></i> - <%= @booking.start_date %> until <%= @booking.end_date %></p>
-        <br>
-        <i class="fa-solid fa-sack-dollar"></i> - <strong><%= @booking.price %> €</strong></p>
-        <br>
-        <% unless @booking.passed? %>
-          <p><strong>More: </strong></p>
-          <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
-          <br>
-          <br>
-          <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
-        <% end %>
+          <div class="recap">
+            <h4> Recap: </h4>
+          </div>
+            <div class="corps">
+              <br>
+              <i class="fa-solid fa-thumbs-up"></i> - <%= @booking.product.name.capitalize %>
+              <br>
+              <p>(daily cost) = <%= @booking.product.price_per_day %> € / day</p>
+              <br>
+              <i class="fa-regular fa-calendar"></i>  <span>Renting starts on <%= @booking.start_date %></span>
+              <br>
+              <i class="fa-regular fa-calendar"></i>  <span>Renting ends on <%= @booking.end_date %></span>
+              <br>
+              <br>
+              <i class="fa-solid fa-sack-dollar"></i> - <span><strong><%= @booking.price %> €</strong></span>
+              <br>
+              <br>
+            </div>
+                <div class="more text-center">
+                  <% unless @booking.passed? %>
+                    <p><strong>More: </strong></p>
+                    <div class="action-buttons"></div>
+                    <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+                    <br>
+                    <br>
+                    <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
+                  <% end %>
+                </div>
         </div>
       </div>
 
