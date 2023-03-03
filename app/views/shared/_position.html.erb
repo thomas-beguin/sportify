@@ -1,0 +1,13 @@
+<div data-controller="showmap d-flex">
+  <%= simple_form_for(:current_position, url: root_path, method: "GET", class:"form-position",
+                      data: {
+                        showmap_target: "form",
+                        action: "submit->showmap#displayCurrentPosition"
+                      }) do |f| %>
+                        <%= f.input :lat, as: :hidden, class:"m-0" %>
+                        <%= f.input :lon, as: :hidden, class:"m-0" %>
+                        <%= button_tag type: 'submit', class: "position-button position-absolute" do %>
+                          <i class="fa-solid fa-location-dot"></i>
+                        <% end %>
+  <% end %>
+</div>

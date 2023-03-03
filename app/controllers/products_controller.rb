@@ -17,17 +17,21 @@ class ProductsController < ApplicationController
       @products = Product.search_by_name_and_category_and_sport(params[:query])
     end
 
+    if params[:current_position].present?
+      @products = Product.near([params[:current_position][:lat], params[:current_position][:lon]], 10)
+    end
+
   end
 
   def show
     authorize @product
     @booking = Booking.new
-    @markers = [{
+    @markers = {
       lat: @product.latitude,
       lng: @product.longitude,
       info_window_html: render_to_string(partial: "info_window", locals: {product: @product}),
       marker_html: render_to_string(partial: "marker", locals: {product: @product})
-    }]
+    }
   end
 
   def new

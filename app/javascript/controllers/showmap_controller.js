@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="showmap"
 export default class extends Controller {
-  static targets = ["map", "ctamap"]
+  static targets = ["map", "ctamap", "form"]
 
   connect() {
     console.log("coucou")
@@ -16,5 +16,17 @@ export default class extends Controller {
     } else {
       this.ctamapTarget.innerHTML = "Afficher la carte"
     }
+  }
+
+  // New Method
+
+  displayCurrentPosition() {
+    navigator.geolocation.getCurrentPosition((data) => {
+      const lat = data.coords.latitude;
+      const lon = data.coords.longitude;
+      const url = `http://localhost:3000/?current_position%5Blat%5D=${lat}&current_position%5Blon%5D=${lon}&commit=current_location`;
+      window.location.href = url ;
+    });
+
   }
 }

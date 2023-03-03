@@ -1,7 +1,10 @@
-<%= render 'products/categ' %>
+
 
 <div class="container mt-3">
   <div class="row">
+    <div class="col-12">
+      <h1>All our available products</h1>
+    </div>
   </div>
 </div>
 
@@ -21,25 +24,5 @@
   <div class="div-cta-map">
     <button class="cta-map" id="map-button" data-showmap-target="ctamap" data-action="click->showmap#show">Afficher la carte</button>
   </div>
+
 </div>
-
-
-<script>
-  const allRadio = document.querySelectorAll("input[name='category']");
-      allRadio.forEach((radio) => {
-      radio.addEventListener("change", function(event) {
-          allRadio.forEach((elem) => {
-              elem.parentElement.classList.remove("bnb-filter");
-          })
-          event.target.parentElement.classList.toggle("bnb-filter");
-          var url = window.location.href;
-            if (url.indexOf('?') > -1){
-             url = '?&query=' + radio.parentElement.textContent.replaceAll(/\s/g,'')
-          }else{
-             url += '?&query=' + radio.parentElement.textContent.replaceAll(/\s/g,'')
-          }
-          window.location.href = url;
-
-      });
-  });
-</script>

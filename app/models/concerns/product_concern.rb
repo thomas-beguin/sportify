@@ -1,6 +1,7 @@
 module ProductConcern
   def booked_dates
-    bookings.pluck(:start_date, :end_date)
+    # bookings.pluck(:start_date, :end_date)
+    bookings.select { |booking| !booking.refused? }.pluck(:start_date, :end_date)
   end
 
   def simple_format_booked_dates

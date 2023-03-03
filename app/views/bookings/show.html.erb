@@ -1,127 +1,79 @@
 <div class="container">
+  <div class="title">
+    <h3>Congrats, here is your new booking!<%= render "bookings/status", booking: @booking %></h3>
+  </div>
 
-  <div class="carroussel">
-    <% if  @booking.product.photos.attached? %>
-      <div id="carouselExample-<%=@booking.id%>" class="carousel slide w-100" data-bs-interval="false">
+  <div class="exemple">
+    <div class="row">
 
-        <div class="carousel-inner">
-          <%@booking.product.photos.each_with_index do |photo, index| %>
+      <div class="col-4">
+        <div class="carroussel shadow">
+          <% if  @booking.product.photos.attached? %>
+            <div id="carouselExample-<%=@booking.id%>" class="carousel slide w-100" data-bs-interval="false">
 
-            <div class="carousel-item  <%= "active" if index == 0%>">
-              <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 300px;object-fit: cover;" %>
+              <div class="carousel-inner">
+                <%@booking.product.photos.each_with_index do |photo, index| %>
+
+                  <div class="carousel-item  <%= "active" if index == 0%>">
+                    <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 300px;object-fit: cover;" %>
+                  </div>
+                <% end %>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class = "visually-hidden">Next</span>
+              </button>
             </div>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
           <% end %>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class = "visually-hidden">Next</span>
-        </button>
-      </div>
-    <% else %>
-      <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-    <% end %>
-    <div class="title">
-      <h1>Congrats, here is your new booking!</h1>
-      <%= render "bookings/status", booking: @booking %>
-    </div>
-  </div>
-
-  <div class="booking-footer">
-    <div class="booking-recap shadow">
-      <h3> Recap: </h3>
-      <br>
-      <i class="fa-solid fa-thumbs-up"></i> - <%= @booking.product.name.capitalize %>
-      <br>
-      <p>(daily cost) = <%= @booking.product.price_per_day %> € / day</p>
-      <br>
-      <i class="fa-regular fa-calendar"></i> - <%= @booking.start_date %> until <%= @booking.end_date %></p>
-      <br>
-      <i class="fa-solid fa-sack-dollar"></i> - <strong><%= @booking.price %> €</strong></p>
-    </div>
-
-    <div class="booking-actions shadow">
-      <h4>About your booking</h4>
-      <br>
-      <p>You can benefit of a 24h free cancellation policy.</p>
-
-      <p><strong>More: </strong></p>
-      <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
-      <br>
-      <br>
-      <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
-    </div>
-  </div>
-
-</div>
-
-
-<!--
-
-<div class="title d-flex align-items-center">
-  <h2> Congrats, here is your new booking! </h2>
-  <%= render "bookings/status", booking: @booking %>
-</div>
-
-
-<div class="d-flex">
-
-  <% if  @booking.product.photos.attached? %>
-    <div id="carouselExample-<%=@booking.id%>" class="carousel slide w-100" data-bs-interval="false">
-
-      <div class="carousel-inner">
-        <%@booking.product.photos.each_with_index do |photo, index| %>
-
-          <div class="carousel-item  <%= "active" if index == 0%>">
-            <%= cl_image_tag photo.key, class:"card-img-top", style:"height: 300px;object-fit: cover;" %>
+        <div class="booking-recap shadow">
+          <div class="recap">
+            <h4> Recap: </h4>
           </div>
-        <% end %>
+            <div class="corps">
+              <br>
+              <i class="fa-solid fa-thumbs-up"></i> - <%= @booking.product.name.capitalize %>
+              <br>
+              <p>(daily cost) = <%= @booking.product.price_per_day %> € / day</p>
+              <br>
+              <i class="fa-regular fa-calendar"></i>  <span>Renting starts on <%= @booking.start_date %></span>
+              <br>
+              <i class="fa-regular fa-calendar"></i>  <span>Renting ends on <%= @booking.end_date %></span>
+              <br>
+              <br>
+              <i class="fa-solid fa-sack-dollar"></i> - <span><strong><%= @booking.price %> €</strong></span>
+              <br>
+              <br>
+            </div>
+                <div class="more text-center">
+                  <% unless @booking.passed? %>
+                    <p><strong>More: </strong></p>
+                    <div class="action-buttons"></div>
+                    <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+                    <br>
+                    <br>
+                    <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
+                  <% end %>
+                </div>
+        </div>
       </div>
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-<%=@booking.id%>" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class = "visually-hidden">Next</span>
-      </button>
-    </div>
-  <% else %>
-    <img src="https://images.unsplash.com/photo-1531565637446-32307b194362?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2thdGVib2FyZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
-  <% end %>
+      <div class="col-8">
+        <div id="map-box" class="map-booking shadow"
+          data-controller="map"
+          data-showmap-target="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
 
-  <div class="infos-booking shadow inline-grid mx-4">
-      <h3> Recap: </h3>
-      <br>
-      <p>You would like to book: <%= @booking.product.name.capitalize %></p>
-      <br>
-      <p>That cost: <%= @booking.product.price_per_day %>€ / day</p>
-      <br>
-      <p>Reservation from <%= @booking.start_date %> until <%= @booking.end_date %></p>
-      <br>
-      <p>Total price = <%= @booking.price %>€</p>
     </div>
-
-    <div class="pending-infos">
-      <h3>Your booking is currently pending.</h3>
-      <br>
-      <p>You will receive a confirmation from the owner within the next</p>
-      <br>
-      <p>24 hours.</p>
-      <p>Good news! You won't be asked for your bank details before the owner approval of the booking!</p>
-    </div>
-
   </div>
 </div>
-<br>
-  <div class="change">
-    <%= link_to "Modify my booking", edit_booking_path(@booking) %>
-    <%# <%= link_to "Delete my booking", index_products_path(@products) %> %>
-  </div>
-
--->
