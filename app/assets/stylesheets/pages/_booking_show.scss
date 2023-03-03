@@ -1,7 +1,7 @@
 .title {
   // border: 1px solid black;
   padding: 15px;
-  color:#0E0000 ;
+  color: grey ;
 }
 
 .booking-recap {
@@ -49,4 +49,21 @@
 .booking-footer {
   display: flex;
   gap: 2%;
+}
+
+.recap {
+  border-bottom: solid 0.5px;
+  padding-bottom: 5px;
+}
+
+.booking-recap {
+  padding: 15px;
+}
+
+.more {
+  padding-top: 10px;
+}
+
+.corps {
+  border-bottom: solid 0.2px;
 }
