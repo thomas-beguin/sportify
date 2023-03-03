@@ -9,6 +9,12 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+    @product = @booking.product
+    @markers = [{
+      lat: @booking.product.latitude,
+      lng: @booking.product.longitude,
+      marker_html: render_to_string(partial: "marker", locals: { product: @product })
+    }]
   end
 
   def new
