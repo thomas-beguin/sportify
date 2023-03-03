@@ -17,7 +17,7 @@
               <button type="button" class="btn btn-primary text-white font-weight-bold">Book a new product</button>
             <% end %>
           </div>
-          <%= render "pages/list_of_bookings", bookings: @current_rent %>
+          <%= render "pages/list_of_bookings", bookings: @current_rent, role: "client" %>
         </div>
         <div class="mb-5">
           <div class="d-flex">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="tab-pane fade" id="nav-offers" role="tabpanel" aria-labelledby="nav-offers-tab">
       <!-- Owner Part -->
       <div class="border-bottom mb-3">
@@ -42,15 +42,15 @@
         </div>
         <h4 class="dashboard-title m-0">Current offers (<%= @bookings_accepted.length %>)</h4>
         <div class="row mb-5">
-          <%= render "pages/list_of_bookings", bookings: @bookings_accepted %>
+          <%= render "pages/list_of_bookings", bookings: @bookings_accepted, role: "owner" %>
         </div>
         <h4 class="dashboard-title m-0">Previous offers (<%= @bookings.length %>)</h4>
         <div class="row mb-5">
-          <%= render "pages/list_of_bookings", bookings: @bookings_passed %>
+          <%= render "pages/list_of_bookings", bookings: @bookings_passed, role: "owner" %>
         </div>
           <h4 class="dashboard-title">All my  products (<%= @products.length %>)</h4>
         <div class="row mb-5">
-          <%= render "pages/list_of_bookings", bookings: @previous_rent, role: "client" %>
+          <%= render "pages/list_of_bookings", bookings: @previous_rent, role: "owner" %>
         </div>
       </div>
     </div>
@@ -84,7 +84,7 @@
     <div class="row mb-5">
       <%= render 'products/small_carousel', products: @products %>
     </div>
-    
+
     <div class="tab-pane fade" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
       <!-- Perso info part -->
       <div class="border-bottom">
