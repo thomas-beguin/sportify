@@ -49,11 +49,13 @@
       <br>
       <p>You can benefit of a 24h free cancellation policy.</p>
 
-      <p><strong>More: </strong></p>
-      <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
-      <br>
-      <br>
-      <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
+      <% unless @booking.passed? %>
+        <p><strong>More: </strong></p>
+        <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+        <br>
+        <br>
+        <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 

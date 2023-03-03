@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_notifications
 
   include Pundit::Authorization
 
@@ -26,5 +27,14 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def set_notifications
+    if current_user
+      @products = current_user.products
+      @bookings = @products.map(&:bookings).flatten
+      @bookings.each { |booking| booking.passed! if booking.end_date < Date.today }
+      @bookings_pending = @bookings.select(&:pending?)
+    end
   end
 end

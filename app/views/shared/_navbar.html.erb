@@ -18,14 +18,31 @@
           </li>
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "My dashboard", dashboard_path, class: "nav-link" %>
+              <span><%= link_to "My dashboard", dashboard_path, class: "nav-link" %></span>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown position-relative">
+
               <% if current_user.photo.attached? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, crop: :fill, style:"height: 40px; width: 40px" %>
               <% else %>
                 <%= image_tag "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTR8fGJsZXV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
+
+              <% if @bookings_pending.length > 0 %>
+                <span class="position-absolute" style ="width: 15px;
+                                                        background: red;
+                                                        border-radius: 50%;
+                                                        font-size: 9px;
+                                                        /* padding: 1px; */
+                                                        height: 15px;
+                                                        text-align: center;
+                                                        margin: 0;
+                                                        color: white;
+                                                        left: 30px;
+                                                        border: 1px solid white;">
+                                                        <%= @bookings_pending.length %></span>
+              <% end %>
+
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Edit my profile", edit_user_registration_path, class: "dropdown-item" %>
                 <%= link_to "Delete my profile", "#", class: "dropdown-item" %>
