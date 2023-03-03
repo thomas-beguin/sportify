@@ -17,6 +17,10 @@ class ProductsController < ApplicationController
       @products = Product.search_by_name_and_category_and_sport(params[:query])
     end
 
+    if params[:current_position].present?
+      @products = Product.near([params[:current_position][:lat], params[:current_position][:lon]], 10)
+    end
+
   end
 
   def show
