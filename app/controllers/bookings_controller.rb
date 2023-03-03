@@ -39,8 +39,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    authorize @booking
     @booking.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   def accept
