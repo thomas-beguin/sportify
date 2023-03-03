@@ -1,28 +1,58 @@
-<div data-controller="dashboard">
-  <div>
-    <div class="mt-3 mb-5 d-flex">
-      <h4 id="client" class="active-button" data-action="click->dashboard#client" data-dashboard-target="btnClient">Bookings</h4>
-      <h4 id="owner"  class="inactive-button" data-action="click->dashboard#owner" data-dashboard-target="btnOwner">Offers</h4>
+<div>
+  <nav>
+    <div class="nav nav-tabs mt-3 mb-3" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-bookings-tab" data-bs-toggle="tab" data-bs-target="#nav-bookings" type="button" role="tab" aria-controls="nav-bookings" aria-selected="true">My bookings</button>
+      <button class="nav-link" id="nav-offers-tab" data-bs-toggle="tab" data-bs-target="#nav-offers" type="button" role="tab" aria-controls="nav-offers" aria-selected="false">My offers</button>
+      <button class="nav-link" id="nav-personal-info-tab" data-bs-toggle="tab" data-bs-target="#nav-personal-info" type="button" role="tab" aria-controls="nav-personal-info" aria-selected="false">My personnal information</button>
     </div>
-  </div>
-
-  <!-- Client Part -->
-  <div class="border-bottom mb-3" data-dashboard-target="client">
-    <div class="mb-4">
-      <div class="d-flex align-items-center justify-content-between">
-        <h4 class="dashboard-title m-0">Current bookings (<%= @current_rent.length %>)</h4>
-        <%= link_to root_path do %>
-          <button type="button" class="btn btn-primary text-white font-weight-bold">Rent a new product</button>
-        <% end %>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab">
+      <!-- Client Part -->
+      <div class="border-bottom mb-3">
+        <div class="mb-5">
+          <div class="d-flex align-items-center justify-content-between">
+            <h4 class="dashboard-title m-0">Current bookings (<%= @current_rent.length %>)</h4>
+            <%= link_to root_path do %>
+              <button type="button" class="btn btn-primary text-white font-weight-bold">Book a new product</button>
+            <% end %>
+          </div>
+          <%= render "pages/list_of_bookings", bookings: @current_rent %>
+        </div>
+        <div class="mb-5">
+          <div class="d-flex">
+            <h4 class="dashboard-title m-0">Previous bookings (<%= @previous_rent.length %>)</h4>
+          </div>
+          <%= render "pages/list_of_bookings", bookings: @current_rent, role: "client" %>
+        </div>
       </div>
-      <%= render "pages/list_of_bookings", bookings: @current_rent, role: "client" %>
     </div>
-
-    <div class="mb-5">
-      <div class="d-flex">
-        <h4 class="dashboard-title m-0">Previous bookings (<%= @previous_rent.length %>)</h4>
+    
+    <div class="tab-pane fade" id="nav-offers" role="tabpanel" aria-labelledby="nav-offers-tab">
+      <!-- Owner Part -->
+      <div class="border-bottom mb-3">
+        <div class="d-flex align-items-center justify-content-between">
+        <h4 class="dashboard-title m-0">Notifications (<%= @bookings_pending.length %>)</h4>
+          <%= link_to new_product_path do %>
+            <button type="button" class="btn btn-primary text-white font-weight-bold">Offer a new product</button>
+          <% end %>
+        </div>
+        <div class="row mb-5">
+          <%= render "pages/demands_of_bookings", bookings_pending: @bookings_pending %>
+        </div>
+        <h4 class="dashboard-title m-0">Current offers (<%= @bookings_accepted.length %>)</h4>
+        <div class="row mb-5">
+          <%= render "pages/list_of_bookings", bookings: @bookings_accepted %>
+        </div>
+        <h4 class="dashboard-title m-0">Previous offers (<%= @bookings.length %>)</h4>
+        <div class="row mb-5">
+          <%= render "pages/list_of_bookings", bookings: @bookings_passed %>
+        </div>
+          <h4 class="dashboard-title">All my  products (<%= @products.length %>)</h4>
+        <div class="row mb-5">
+          <%= render "pages/list_of_bookings", bookings: @previous_rent, role: "client" %>
+        </div>
       </div>
-      <%= render "pages/list_of_bookings", bookings: @previous_rent, role: "client" %>
     </div>
   </div>
 
@@ -54,6 +84,20 @@
     <div class="row mb-5">
       <%= render 'products/small_carousel', products: @products %>
     </div>
-
+    
+    <div class="tab-pane fade" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
+      <!-- Perso info part -->
+      <div class="border-bottom">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <h4 class="dashboard-title m-0">Review your personal data</h4>
+          <%= link_to new_product_path do %>
+              <button type="button" class="btn btn-primary text-white font-weight-bold">Edit your personal data</button>
+          <% end %>
+        </div>
+        <p>Name : <%= "#{current_user.first_name} #{current_user.last_name}" %></p>
+        <p>Email : <%= current_user.email %></p>
+        <p>Address : <%= current_user.address %> </p>
+      </div>
+    </div>
   </div>
 </div>
