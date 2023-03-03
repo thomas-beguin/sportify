@@ -56,10 +56,10 @@
                   <% unless @booking.passed? %>
                     <p><strong>More: </strong></p>
                     <div class="action-buttons"></div>
-                    <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary" %>
+                    <%= link_to "Modify my booking", edit_booking_path(@booking), class: "btn btn-primary text-white" %>
                     <br>
                     <br>
-                    <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-primary" %>
+                    <%= link_to "Delete my booking", booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you certain ?"}, class:"btn btn-danger text-white" %>
                   <% end %>
                 </div>
         </div>
