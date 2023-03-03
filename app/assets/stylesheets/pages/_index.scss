@@ -2,3 +2,38 @@
 @import "home";
 @import "product_show";
 @import "booking_show";
+
+.bnb-img {
+  width: 30px;
+  transition: color 0.2s ease;
+}
+
+.bnb-passive {
+  width: 80px;
+  transition: filter 0.3s ease;
+  filter: contrast(0.1);
+  position: relative;
+  margin-right: 60px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.bnb-filter {
+  color:black;
+  filter: none;
+  border-bottom: 2px solid black;
+}
+
+.radio-categ {
+  position: absolute;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
+.gradient-categ {
+  margin-top: 8px;
+}
