@@ -18,7 +18,7 @@ class PagesController < ApplicationController
     # CLIENT PART
     @current_rent = current_user.bookings.select { |booking| booking.end_date >= Date.today && !booking.refused? }
     @previous_rent = current_user.bookings.select { |booking| booking.end_date < Date.today || booking.refused? }
-
+    @previous_rent.each { |booking| booking.passed! }
 
     # OWNER PART
     @products = current_user.products
