@@ -4,7 +4,7 @@
 ### 📱 Concept
 
 We decided as a group to code this web app to :
-- allow people to earn money by renting sports equipment that they do not use 
+- allow people to rent their sports equipment that they do not use 
 - allow others to rent sports equipment anywhere
 
 The main idea was that we all have sports equipment that we do not use in our house or appartment. And, we not always want to buy all the equipment when we want to practice a new sport.
